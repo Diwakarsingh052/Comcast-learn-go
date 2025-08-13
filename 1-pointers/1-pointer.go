@@ -8,9 +8,10 @@ func main() {
 	p := &a
 	fmt.Println("address of a", &a)
 	fmt.Println("value of p", p)
-	*p = 20 // dereference of pointer
+	*p = 20 // dereference of pointer //  *// value at the address
 	fmt.Println(a)
 	update(&a)
+	//update(p) // same as above
 	fmt.Println(a)
 	fmt.Println(*p)
 }

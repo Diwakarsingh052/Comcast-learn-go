@@ -1,0 +1,12 @@
+q1. 1. Define an `Author` struct with two fields:
+        - `Name` (string)
+        - `Books` (slice of strings)
+
+    2. Create two methods for the `Author` struct:
+        - One method to add new books to the books slice
+        - Another method to display/print the author information
+
+    3. Write a function that takes an `Author` struct as a parameter and adds books to
+     its books slice
+    4. Write another function that takes just the `Books` slice (not the entire struct)
+     as a parameter and appends additional books to it
