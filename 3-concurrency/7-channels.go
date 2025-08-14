@@ -21,11 +21,11 @@ func main() {
 		ch <- "get" // send
 	}()
 
-	//go func() {
-	//	defer wg.Done()
-	//	x := <-ch // recv // it would block until channel has not received the value
-	//	fmt.Println("start working on the received value", x)
-	//}()
+	go func() {
+		defer wg.Done()
+		x := <-ch // recv // it would block until channel has not received the value
+		fmt.Println("start working on the received value", x)
+	}()
 
 	wg.Wait()
 }
