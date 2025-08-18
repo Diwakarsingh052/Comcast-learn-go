@@ -3,29 +3,28 @@ package main
 import (
 	"fmt"
 	"sync"
-	"time"
 )
 
 // NOTE: Use this with ony unbuffered channels,
 // NEVER use for select pattern with buffered channels
+// if you want to use buffered channels,
+// it is better to run ranges for each channel
 func main() {
 
 	wg := new(sync.WaitGroup)
 	wgTask := new(sync.WaitGroup)
-	get := make(chan string)
-	post := make(chan string)
-	put := make(chan string)
+	get := make(chan string, 2)
+	post := make(chan string, 2)
+	put := make(chan string, 2)
 	done := make(chan struct{})
 
 	wgTask.Add(3)
 	go func() {
 		defer wgTask.Done()
-		time.Sleep(3 * time.Second)
 		get <- "get done"
 	}()
 	go func() {
 		defer wgTask.Done()
-		time.Sleep(1 * time.Second)
 		post <- "post done"
 	}()
 	go func() {
@@ -47,6 +46,7 @@ func main() {
 	//fmt.Println("get:", <-get)
 	//fmt.Println("post:", <-post)
 	//fmt.Println("put:", <-put)
+
 	wg.Add(1)
 	go func() {
 		defer wg.Done()
@@ -65,9 +65,9 @@ func main() {
 			case <-done:
 				fmt.Println(" all goroutines finished")
 				return
-			default:
-				fmt.Println("waiting...")
-				time.Sleep(1 * time.Second)
+				//default:
+				//	fmt.Println("waiting...")
+				//	time.Sleep(1 * time.Second)
 			}
 		}
 	}()

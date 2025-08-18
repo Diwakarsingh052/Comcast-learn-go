@@ -36,6 +36,7 @@ func main() {
 	go func() {
 		defer wg.Done()
 		for v := range ch {
+			
 			time.Sleep(time.Millisecond * 50)
 			fmt.Println(v, "2nd range")
 		}
