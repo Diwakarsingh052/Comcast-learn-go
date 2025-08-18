@@ -33,4 +33,5 @@ func main() {
 func SubTask(id int, wg *sync.WaitGroup) {
 	defer wg.Done()
 	fmt.Println("doing some sub task", id)
+
 }
