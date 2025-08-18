@@ -6,6 +6,7 @@ import (
 	"time"
 )
 
+// go build -race program.go // to run the program
 var x int = 1
 
 // maps are not safe for concurrent access, use mutex for safe operations

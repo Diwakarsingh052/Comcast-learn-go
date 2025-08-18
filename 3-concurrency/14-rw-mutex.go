@@ -52,4 +52,5 @@ func PrintY(wg *sync.WaitGroup, m *sync.RWMutex) {
 	defer m.RUnlock()
 	fmt.Println("read", y)
 	time.Sleep(4 * time.Second)
+
 }
