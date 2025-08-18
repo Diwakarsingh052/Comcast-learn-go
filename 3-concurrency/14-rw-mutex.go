@@ -6,26 +6,23 @@ import (
 	"time"
 )
 
-var x int = 1
+// read write mutex
 
-// maps are not safe for concurrent access, use mutex for safe operations
-var user = map[int]string{
-	1: "John",
-}
+var y int = 1
 
 func main() {
 	wg := new(sync.WaitGroup)
-	m := new(sync.Mutex)
+	m := new(sync.RWMutex)
 	for i := 1; i <= 5; i++ {
 		wg.Add(2)
-		go UpdateX(i, wg, m)
-		go PrintX(wg, m)
+		go UpdateY(i, wg, m)
+		go PrintY(wg, m)
 	}
 	wg.Wait()
-	fmt.Println("last value", x)
+	fmt.Println("last value", y)
 }
 
-func UpdateX(val int, wg *sync.WaitGroup, m *sync.Mutex) {
+func UpdateY(val int, wg *sync.WaitGroup, m *sync.RWMutex) {
 	defer wg.Done()
 	// critical section
 	// this is the place where we access the shared resource
@@ -38,18 +35,21 @@ func UpdateX(val int, wg *sync.WaitGroup, m *sync.Mutex) {
 	//	- n number of concurrent writes
 	// 	- n number of concurrent writes and n number of concurrent reads
 	// 	Note - Data race doesn't happen if there are only concurrent reads
-	m.Lock()
+	m.Lock() // when Write lock is acquired,
+	// no other read or writes are allowed
 	defer m.Unlock()
 	fmt.Println("writing", val)
-	x = val
+	y = val
 	time.Sleep(1 * time.Second)
 
 }
 
-func PrintX(wg *sync.WaitGroup, m *sync.Mutex) {
+func PrintY(wg *sync.WaitGroup, m *sync.RWMutex) {
 	defer wg.Done()
-	m.Lock()
-	defer m.Unlock()
-	fmt.Println("read", x)
+	//no one can write when read lock is acquired,
+	// there could be unlimited number of reads
+	m.RLock() // Read Lock
+	defer m.RUnlock()
+	fmt.Println("read", y)
 	time.Sleep(4 * time.Second)
 }
