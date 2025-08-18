@@ -36,6 +36,8 @@ func main() {
 	go func() {
 		defer wg.Done()
 		wgTask.Wait()
+		// we will close the done channel when all goroutines are finished
+		//close is also a send signal, which can be received in select
 		close(done)
 
 	}()
