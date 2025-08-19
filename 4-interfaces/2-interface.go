@@ -57,7 +57,7 @@ func DoSomeReadingV2(r io.Reader) {
 	//or if Io is passed Read would be called from IO
 	r.Read(nil)
 	//// type assertion // checking if file object is present in the interface or not
-	f, ok := r.(File)
+	f, ok := r.(File) // always use this with the ok variant , otherwise it would panic
 	if ok {
 		fmt.Println("file object found in interface, " +
 			"calling its methods which are not part of interface")
