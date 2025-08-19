@@ -31,5 +31,5 @@ go.work.sum
 # .idea/
 .vscode/
 go.work.sum
-.idea
+.idea/
 makefile
