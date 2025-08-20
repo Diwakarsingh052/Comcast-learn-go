@@ -1,0 +1,29 @@
+
+style guide:- https://google.github.io/styleguide/go/best-practices
+              https://docs.gitlab.com/ee/development/go_guide/
+DDD & Clean Architecture
+https://threedots.tech/post/introducing-clean-architecture/
+https://programmingpercy.tech/blog/how-to-domain-driven-design-ddd-golang/
+https://programmingpercy.tech/blog/how-to-structure-ddd-in-go/
+
+Book:- https://www.amazon.in/Learning-Go-Jon-Bodner-ebook/dp/B0CS5DY1VN
+       https://www.amazon.in/Concurrency-Go-Tools-Techniques-Developers-ebook/dp/B0742NH2SG
+
+
+documentation:- https://go.dev/doc/
+pkg.go.dev
+
+Linters & security checkers
+https://github.com/securego/gosec
+cmd:- gosec ./...
+
+golangci-lint: https://github.com/golangci/golangci-lint?tab=readme-ov-file
+golangci-lint linters :- get list of all the linters that are available to use
+
+
+
+govulncheck
+- Official Go vulnerability checking tool
+- Analyzes your code and dependencies for known vulnerabilities
+- Can be installed with: `go install golang.org/x/vuln/cmd/govulncheck@latest`
+- govulncheck ./... to run on the whole codebase
