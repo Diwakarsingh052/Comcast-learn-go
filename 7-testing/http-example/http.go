@@ -20,6 +20,7 @@ func DoubleHandler(w http.ResponseWriter, r *http.Request) {
 		http.Error(w, "value is invalid", http.StatusBadRequest)
 		return
 	}
+	w.WriteHeader(http.StatusOK)
 	fmt.Fprintln(w, n*2)
 
 }
