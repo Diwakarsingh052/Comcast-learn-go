@@ -1,0 +1,2 @@
+go mod tidy // download deps for the project, remove unused deps, update go.mod file for direct or indirect deps
+go get moduleName // to download the dependecies
